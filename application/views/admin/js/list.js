@@ -11,6 +11,7 @@ vmReady( function()
             null,
             null,
             null,
+            null,
             { 'orderable': false, "searchable": false }
         ]
     });
