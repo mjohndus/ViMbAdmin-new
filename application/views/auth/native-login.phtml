@@ -1,91 +1,41 @@
 {tmplinclude file="header.phtml"}
 
-<style nonce="{$cspNonce}">
-    .vimb-login-form dl {
-        margin-bottom: 0;
-    }
-    .vimb-login-form dt {
-        font-weight: 600;
-        margin-bottom: 0.35rem;
-        color: #495057;
-    }
-    .vimb-login-form dd {
-        margin-left: 0;
-        margin-bottom: 1rem;
-    }
-    .vimb-login-form input[type="text"],
-    .vimb-login-form input[type="password"],
-    .vimb-login-form input[type="email"] {
-        display: block;
-        width: 100%;
-        padding: 0.5rem 0.75rem;
-        font-size: 1rem;
-        line-height: 1.5;
-        color: #212529;
-        background-color: #fff;
-        background-clip: padding-box;
-        border: 1px solid #ced4da;
-        border-radius: 0.375rem;
-        transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
-    }
-    .vimb-login-form input[type="text"]:focus,
-    .vimb-login-form input[type="password"]:focus,
-    .vimb-login-form input[type="email"]:focus {
-        border-color: #86b7fe;
-        outline: 0;
-        box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
-    }
-    .vimb-login-form input[type="submit"],
-    .vimb-login-form button[type="submit"] {
-        width: 100%;
-        padding: 0.55rem 1rem;
-        font-weight: 500;
-        border-radius: 0.375rem;
-        margin-top: 0.5rem;
-    }
-</style>
-
 <div class="page-content">
-    <div class="container py-4">
-        <div class="row justify-content-center">
-            <div class="col-12 col-sm-10 col-md-7 col-lg-5">
 
-                {OSS_Message}
+    <div class="vimb-sub-header">
+        <h1>Login to ViMbAdmin</h1>
+    </div>
 
-                <div class="card shadow-sm rounded-3 mb-4">
-                    <div class="card-body p-4">
+    {OSS_Message}
 
-                        <div class="text-center mb-3">
-                            <img src="{genUrl}/images/logo_500x159.jpg" alt="ViMbAdmin" class="img-fluid rounded-2 mb-3" style="max-height: 95px;" />
-                            <h2 class="h4 mb-2">Login to ViMbAdmin</h2>
-                            <p class="text-muted small mb-0">
-                                Welcome to <em>ViMbAdmin</em>, a web application for managing your virtual mailboxes, domains and aliases.
-                            </p>
-                        </div>
+    <div class="row justify-content-center mt-4">
+        <div class="col-md-6 col-lg-5">
 
-                        <hr class="my-3" />
-
-                        <div class="vimb-login-form">
-                            {$formHtml nofilter}
-                        </div>
-
-                    </div>
-                </div>
-
-                <div class="card shadow-sm rounded-3 bg-light">
-                    <div class="card-body p-3 d-flex flex-column flex-sm-row align-items-center justify-content-between gap-2">
-                        <span class="small text-muted text-center text-sm-start">
-                            Are you a user (mailbox owner) looking to change your password?
-                        </span>
-                        <a class="btn btn-outline-primary btn-sm text-nowrap rounded-2" href="{genUrl controller="auth" action="change-password"}">
-                            Mailbox Password Change
-                        </a>
-                    </div>
-                </div>
-
+            <div class="text-center mb-3">
+                <img src="{genUrl}/images/logo_500x159.jpg" class="img-fluid" alt="ViMbAdmin" />
             </div>
+
+            <p class="mb-4">
+                Welcome to <em>ViMbAdmin</em>, a web application for managing your virtual mailboxes, domains and aliases.
+            </p>
+
+            <div class="vimb-login-form mb-4">
+                {$formHtml nofilter}
+            </div>
+
+            <div class="card card-body bg-light">
+                <div class="d-flex justify-content-between align-items-center gap-3">
+                    <p class="mb-0">
+                        Are you a user (mailbox owner) looking to change your
+                        password? If so, please click on this button:
+                    </p>
+                    <a class="btn btn-primary text-nowrap" href="{genUrl controller="auth" action="change-password"}">Mailbox Password Change</a>
+                </div>
+            </div>
+
         </div>
     </div>
+
 </div>
 
 {tmplinclude file="footer.phtml"}
