@@ -52,7 +52,8 @@ body > .container {
 /* Labels einzeilig & rechtsbündig neben den Feldern (185px verhindert Umbruch bei "Confirm New Password") */
 .vimb-login-form label {
     width: 185px;
-    white-space: nowrap;
+    white-space: normal;
+    line-height: 1.25;
     text-align: right;
     font-weight: 600;
     margin-bottom: 0;
@@ -197,4 +198,51 @@ form input:focus {
 
 .page-content pre {
     user-select: all;
+}
+
+/* --- Checkboxen exakt auf 199px (linksbündig unter den Input-Feldern) ausrichten --- */
+.vimb-login-form .form-check,
+.vimb-login-form .control-group:has(input[type="checkbox"]),
+.vimb-login-form .mb-3:has(input[type="checkbox"]),
+.vimb-login-form .form-group:has(input[type="checkbox"]) {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding-left: 199px;
+    box-sizing: border-box;
+}
+
+/* Falls die Checkbox in einem eigenen .controls- oder Wrapper-Div steckt */
+.vimb-login-form .controls:has(input[type="checkbox"]),
+.vimb-login-form .form-check {
+    display: flex;
+    align-items: center;
+    width: auto !important;
+    margin-left: 0 !important;
+}
+
+/* Checkbox-Kästchen links vor den Text schieben */
+.vimb-login-form input[type="checkbox"] {
+    order: -1;
+    position: static !important;
+    float: none !important;
+    width: 1rem;
+    height: 1rem;
+    margin: 0 8px 0 0 !important;
+    flex-shrink: 0;
+    cursor: pointer;
+}
+
+/* Label rechts neben der Checkbox ohne Breitenbegrenzung */
+.vimb-login-form .form-check label,
+.vimb-login-form .control-group:has(input[type="checkbox"]) label,
+.vimb-login-form .mb-3:has(input[type="checkbox"]) label,
+.vimb-login-form .form-group:has(input[type="checkbox"]) label {
+    order: 1;
+    width: auto !important;
+    white-space: nowrap;
+    text-align: left !important;
+    font-weight: 400;
+    margin: 0 !important;
+    cursor: pointer;
 }
