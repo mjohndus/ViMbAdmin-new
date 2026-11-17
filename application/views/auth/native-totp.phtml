@@ -6,21 +6,19 @@
         <h1>Two-Factor Authentication</h1>
     </div>
 
-{OSS_Message}
+    {OSS_Message}
 
-<div class="row">
-    <div class="col-md-6 offset-md-3">
-
-        <p>
-        Enter the 6-digit code from your authenticator app. Lost your device?
-        Enter one of your one-time <em>backup codes</em> instead.
-        </p>
-        <div class="vimb-login-form vimb-changepw-form mb-3">
-            {$formHtml nofilter}
+    <div class="row">
+        <div class="col-md-6 offset-md-3">
+            <p>
+                Enter the 6-digit code from your authenticator app. Lost your device?
+                Enter one of your one-time <em>backup codes</em> instead.
+            </p>
+            <div class="vimb-login-form vimb-changepw-form mb-3">
+                {$formHtml nofilter}
+            </div>
         </div>
     </div>
-</div>
-
 </div>
 
 {tmplinclude file="footer.phtml"}
