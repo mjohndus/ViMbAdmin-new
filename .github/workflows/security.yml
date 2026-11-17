@@ -2,9 +2,9 @@ name: Security scan (SAST)
 
 on:
   push:
-    branches: [master]
+    branches: [vimbo]
   pull_request:
-    branches: [master]
+    branches: [vimbo]
   schedule:
     # Weekly re-scan so new Semgrep rules catch latent issues.
     - cron: '27 4 * * 1'
