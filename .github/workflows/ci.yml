@@ -3,9 +3,9 @@ name: CI
 
 on:  # yamllint disable-line rule:truthy
   push:
-    branches: [master]
+    branches: [vimbo]
   pull_request:
-    branches: [master]
+    branches: [vimbo]
   workflow_dispatch:
 
 permissions:
