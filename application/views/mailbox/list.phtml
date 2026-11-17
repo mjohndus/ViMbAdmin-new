@@ -69,7 +69,6 @@
                 <span id="toggle-active-{$mbox.id}" data-toggle-active="{$mbox.id}" class="btn btn-sm {if $mbox.active}btn-success{else}btn-danger{/if}">{$mbox.active|yesno}</span>
             </td>
             <td>
-                
                 <div class="btn-group">
                     <a class="btn btn-sm have-tooltip" id="edit_mailbox_{$mbox.id}" title="Edit" href="{genUrl controller='mailbox' action='edit' mid=$mbox.id}">
                         <i class="bi-pencil"></i>
@@ -137,7 +136,6 @@
                         </ul>
                     {/if}
                 </div>
-              
             </td>
         </tr>
 {/foreach}
