@@ -1,5 +1,5 @@
 {
-  "historical_inventory_sha256": "dc8ecf1ca38a30e7208211dbb15716cfc286a886f15b9dba4859118a254e3ca4",
+  "historical_inventory_sha256": "c29bd0a1946da1ab1b5623ae0a048afefdadf8ab39d7834308ba31bfd1b3a30a",
   "routes": [
     "additionalinfo/typeahead",
     "admin/add",
