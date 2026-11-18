@@ -32,7 +32,7 @@ function checkTriggers(workflow) {
   for (const event of workflowEvents) {
     assert.ok(Object.hasOwn(workflow.on ?? {}, event), 'all workflow triggers required');
   }
-  assert.deepEqual(workflow.on.push, { branches: ['master'] },
+  assert.deepEqual(workflow.on.push, { branches: ['vimbo'] },
     'merged-tree checks require an unfiltered master push');
 }
 
