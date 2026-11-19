@@ -35,7 +35,7 @@ SMARTY;
 const PURGE_MODAL_INCLUDE = "{tmplinclude file='list/_purge-modal-header.phtml'}";
 const ORIGINAL_HASHES = [
     'alias/list.phtml' => '27c388e50b5d0b90d77bf3c79c5a9861d141769b216a3f53db3d223e63b03975',
-    'admin/domains.phtml' => 'f4e3727d2984e8431110b7a3873f2d61f8b1031e335224c66838d1666bc5e983',
+    'admin/domains.phtml' => '47561e341c43554b1ef226a997e75b5c08f0cd2e6b99c4a6b41a25b7805f0606',
 ];
 
 final class ListTemplateAdmin
