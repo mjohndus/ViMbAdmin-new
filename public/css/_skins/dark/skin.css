@@ -32,8 +32,8 @@ body {
 a            { color: var(--vimb-accent); }
 a:hover      { color: var(--vimb-accent-2); }
 hr           { border-top-color: var(--vimb-border); }
-.page-header { background-color: var(--vimb-surface-2); border-bottom-color: var(--vimb-border); }
-.page-header h1, h1, h2, h3, h4, legend { color: var(--vimb-text); }
+.page-header .vimb-sub-header { background-color: var(--vimb-surface-2); border-bottom-color: var(--vimb-border); }
+.page-header h1 .vimb-sub-header h1, h1, h2, h3, h4, legend { color: var(--vimb-text); }
 
 /* ---- top navbar --------------------------------------------------- */
 /* Bootstrap 5 renamed the whole navbar surface: `.navbar-inverse` became
@@ -163,7 +163,7 @@ html, body { background-color: var(--vimb-bg); }
     box-shadow: none;
     border: 1px solid var(--vimb-border);
 }
-.page-header h1 { color: var(--vimb-text); }
+.page-header h1 .vimb-sub-header h1 { color: var(--vimb-text); }
 
 /* ---- DataTables controls (Show entries / Search / info / paging) -- */
 .dataTables_wrapper { color: var(--vimb-text); }
