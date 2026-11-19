@@ -1,13 +1,16 @@
 {tmplinclude file="header.phtml"}
 <div class="page-content" >
-    <div class="page-header" >
+    <div class="page-header vimb-sub-header" >
         <h1>
             Assign Administrator<small> to {$domain->requiredDomainName()}</small>
         </h1>
     </div>
-    {OSS_Message}
 
-    {$formHtml nofilter}
+        {OSS_Message}
 
+        <div class="vimb-login-form vimb-changepw-form mb-3">
+            {$formHtml nofilter}
+            <a class="btn btn-secondary vimb-btn-cancel" href="{genUrl controller='domain'}">Cancel</a>
+        </div>
 </div>
 {tmplinclude file="footer.phtml"}

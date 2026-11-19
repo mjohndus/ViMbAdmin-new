@@ -36,7 +36,7 @@ function appearance() {
     .filter(node => node.getClientRects().length && !node.labels?.length && !node.getAttribute('aria-label') &&
       !node.getAttribute('aria-labelledby') && !node.title && !['submit', 'button'].includes(node.type))
     .map(node => ({ tag: node.tagName, type: node.type, id: node.id }));
-  return { body: pick('body'), heading: pick('.page-header h1'), button: pick('.btn'),
+  return { body: pick('body'), heading: pick('.page-header h1, .vimb-sub-header h1'), button: pick('.btn'),
     headerCell: pick('.table thead th'), bodyCell: pick('.table tbody td'),
     inputGroup: pick('.input-group-text'), focused: pick(':focus'), legacyMatches: Object.fromEntries(legacy.map(selector =>
       [selector, document.querySelectorAll(selector).length])),

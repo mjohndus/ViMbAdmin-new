@@ -1,31 +1,49 @@
-{include file='header.phtml'}
+{tmplinclude file='header.phtml'}
 
-<h1>Welcome to ViMbAdmin</h1>
+<div class="page-content">
 
-<p>
-    Before you can create the first administrator, ViMbAdmin needs its
-    security salts configured.
-</p>
+    <div class="page-header vimb-sub-header">
+        <h1>Welcome to ViMbAdmin</h1>
+    </div>
 
-<div class="card card-body">
-    <h3>Step 1: Security Salts</h3>
+    {OSS_Message}
 
-    <p>
-        <em>Security salts</em> are used to ensure your passwords are secure, you
-        are authorised to complete the install procedure and for cookie security.
-        To proceed, please set the following <strong>randomly generated</strong>
-        salts at the top of the <code>[user]</code> section of the following file:
-        <code>application/configs/application.ini</code>.
-    </p>
+    <div class="row justify-content-center mt-4">
+        <div class="col-md-10 col-lg-9">
 
-    <pre>securitysalt                       = "{$randomSalt|htmlentities}"
-resources.auth.oss.rememberme.salt = "{$rememberSalt|htmlentities}"</pre>
+            <div class="text-center mb-3">
+                <img src="{genUrl}/images/logo_500x159.jpg" class="img-fluid" alt="ViMbAdmin" />
+            </div>
 
-    <p>
-        <strong>Please also ensure you have set all the appropriate values in the
-        <code>[user]</code> section before continuing.</strong> Then reload this
-        page to create the first administrator.
-    </p>
+            <p class="mb-4">
+                Before you can create the first administrator, ViMbAdmin needs its
+                security salts configured.
+            </p>
+
+            <div class="card card-body bg-light mb-4">
+                <h3 class="h5 mb-3">Step 1: Security Salts</h3>
+
+                <p>
+                    <em>Security salts</em> are used to ensure your passwords are secure, you
+                    are authorised to complete the install procedure and for cookie security.
+                    To proceed, please set the following <strong>randomly generated</strong>
+                    salts at the top of the <code>[user]</code> section of the following file:
+                    <code>application/configs/application.ini</code>.
+                </p>
+
+                <pre class="bg-white border rounded p-3 mb-3">securitysalt                       = "{$randomSalt}"
+resources.auth.oss.rememberme.salt = "{$rememberSalt}"</pre>
+
+                <p class="mb-0">
+                    <strong>Please also ensure you have set all the appropriate values in the
+                    <code>[user]</code> section before continuing.</strong> Then reload this
+                    page to create the first administrator.
+                </p>
+            </div>
+
+        </div>
+    </div>
+
 </div>
 
-{include file='footer.phtml'}
+{tmplinclude file='footer.phtml'}

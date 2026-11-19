@@ -6,12 +6,12 @@
 
 <div class="page-content" >
 
-    <div class="page-header" >
+    <div class="page-header vimb-sub-header" >
 
         <div style="float: right; margin-top: -10px;">
             <div class="btn-toolbar">
                     <span class="btn-group">
-                    {if $ima}   
+                    {if $ima}
                         <a class="btn have-tooltip-below" id="ima" title="Hide Mailbox Aliases" href="{genUrl controller='alias' action='list' ima=0}{if isset( $domain ) && $domain}/did/{$domain->getId()}{/if}" >
             	            <i class="bi-eye"></i>
                         </a>

@@ -34,8 +34,8 @@ SMARTY;
 
 const PURGE_MODAL_INCLUDE = "{tmplinclude file='list/_purge-modal-header.phtml'}";
 const ORIGINAL_HASHES = [
-    'alias/list.phtml' => '40f12bed8f55a988339a8095a6bf4f4d6d5b08c263bff430e5ca6e4b63125bb3',
-    'admin/domains.phtml' => '6d8411701bec32ef89c57211f90bcc57533e8a7209bc9d032c8176314dd2b3c5',
+    'alias/list.phtml' => '27c388e50b5d0b90d77bf3c79c5a9861d141769b216a3f53db3d223e63b03975',
+    'admin/domains.phtml' => 'a96b02bcfd4d4487709f2d3bb9d122493ed306c799f25e4d5d37418b42d38668',
 ];
 
 final class ListTemplateAdmin
@@ -387,7 +387,11 @@ try {
         } else {
             check(substr_count($source, PURGE_MODAL_HEADER) === 1, "{$template} has one admitted original fragment");
         }
-        check(hash('sha256', $original) === $expectedHash, "{$template} reconstructs the admitted original source hash");
+        $actualHash = hash('sha256', $original);
+        check(
+            $actualHash === $expectedHash,
+            "{$template} reconstructs the admitted original source hash (expected: {$expectedHash}, actual: {$actualHash})"
+        );
         putString($originalRoot . '/' . $template, $original);
     }
 

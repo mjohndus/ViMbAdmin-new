@@ -72,7 +72,7 @@ test('success retains wait-before-click, original response and silence', async (
     await Promise.resolve();
     assert.deepEqual(page.calls, [
       ['navigation', { waitUntil: 'load', timeout: 15000 }],
-      ['click', 'button[type="submit"]']
+      ['click', 'form[action="/auth/totp"] button[type="submit"]']
     ]);
     page.submission.resolve();
     page.navigation.resolve(response);

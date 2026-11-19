@@ -1,15 +1,32 @@
 {tmplinclude file="header.phtml"}
-<div class="page-content" >
-    <div class="page-header" >
-        <h1>Welcome to ViMbAdmin <small>create the first administrator</small></h1>
+
+<div class="page-content">
+
+    <div class="page-header vimb-sub-header">
+        <h1>Welcome to ViMbAdmin <small class="text-muted fs-5 fw-normal">create the first administrator</small></h1>
     </div>
+
     {OSS_Message}
 
-    <p>No administrators exist yet. Paste the 64-character <code>securitysalt</code>
-       from your <code>application.ini</code> and choose the credentials for the
-       first (super) administrator.</p>
+    <div class="row justify-content-center mt-4">
+        <div class="col-md-8 col-lg-7">
 
-    {$formHtml nofilter}
+            <div class="text-center mb-3">
+                <img src="{genUrl}/images/logo_500x159.jpg" class="img-fluid" alt="ViMbAdmin" />
+            </div>
 
+            <p class="mb-4">
+                No administrators exist yet. Paste the 64-character <code>securitysalt</code>
+                from your <code>application.ini</code> and choose the credentials for the
+                first (super) administrator.
+            </p>
+
+            <div class="vimb-login-form mb-4">
+                {$formHtml nofilter}
+            </div>
+
+        </div>
+    </div>
 </div>
+
 {tmplinclude file="footer.phtml"}
