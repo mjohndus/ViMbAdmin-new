@@ -147,7 +147,7 @@ async function submitCsrfDenial(formPage, name) {
         progress.navigation = 'complete';
         return response;
       }, error => { progress.navigation = 'failed'; throw error; }),
-      formPage.locator('form[action="/auth/totp"] button[type="submit"]').click().then(() => {
+      formPage.click('form[action="/auth/totp"] button[type="submit"]').then(() => {
         progress.submit = 'complete';
       }, error => { progress.submit = 'failed'; throw error; })
     ]);
