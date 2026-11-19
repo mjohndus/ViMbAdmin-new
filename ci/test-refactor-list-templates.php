@@ -387,8 +387,13 @@ try {
         } else {
             check(substr_count($source, PURGE_MODAL_HEADER) === 1, "{$template} has one admitted original fragment");
         }
-        fwrite(STDERR, "ACTUAL HASH {$template}: " . hash('sha256', $original) . "\n");
-        check(hash('sha256', $original) === $expectedHash, "{$template} reconstructs the admitted original source hash");
+//        fwrite(STDERR, "ACTUAL HASH {$template}: " . hash('sha256', $original) . "\n");
+//        check(hash('sha256', $original) === $expectedHash, "{$template} reconstructs the admitted original source hash");
+        $actualHash = hash('sha256', $original);
+        check(
+            $actualHash === $expectedHash,
+            "{$template} reconstructs the admitted original source hash (expected: {$expectedHash}, actual: {$actualHash})"
+        );
         putString($originalRoot . '/' . $template, $original);
     }
 
