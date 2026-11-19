@@ -6,7 +6,7 @@
 
 <div class="page-content" >
 
-    <div class="vimb-sub-header" >
+    <div class="page-header vimb-sub-header" >
         <h1>
             Archives {if isset( $domain ) && $domain}<small> for {$domain->requiredDomainName()} {if $domain->getMaxMailboxes() != 0}({$domain->getMailboxCount()}/{$domain->getMaxMailboxes()}){/if}</small>
                 <a class="btn have-tooltip-below" id="show_all_archives" title="Show All" href="{genUrl controller='archive' action='list' unset=1}">
