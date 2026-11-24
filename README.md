@@ -1,5 +1,15 @@
 # ViMbAdmin — modernised fork
 
+> **Fork Notice – Custom Modifications**
+> This fork contains three targeted additions for bare-metal deployments and streamlined UI/template customization:
+>
+> 1. **Doveadm HTTP Bypass (`library/ViMbAdmin/Doveadm.php`)** – Supports `doveadm.http.skip = 1` in `application.ini` (default: `0`) to return a dummy client (`http://skip.local`) for testing or draining queued tasks without an active Dovecot endpoint.
+> 2. **Visual Inventory Auto-Hash (`ci/test-browser-visual.sh`)** – Adds a `fix` / `check` mode (`bash ci/test-browser-visual.sh check`) to automatically update SHA-256 hashes in `ci/browser-visual-inventory.json` after CSS or view changes.
+> 3. **List Template Auto-Hash (`ci/test-refactor-list-templates.php`)** – Adds a `fix` / `check` mode (`php ci/test-refactor-list-templates.php check`) to update `ORIGINAL_HASHES` when `alias/list.phtml` or `admin/domains.phtml` are modified.
+
+---
+
+
 > **Live demo:** **<https://vimbadmin.myguard.nl>** — demo account is read-only-ish
 > (password + 2FA changes locked, outgoing mail no-op'd); everything else is the
 > real panel.
