@@ -160,7 +160,10 @@ class ViMbAdmin_Doveadm
         }
         $options = self::mapValue($options, 'doveadm options');
         // Test-Bypass: Ohne Dovecot-Server gültiges Dummy-Objekt zurückgeben
-        if ((string) (($options['doveadm']['http']['skip'] ?? '')) === '1') {
+        $doveadmOpts = is_array($options['doveadm'] ?? null) ? $options['doveadm'] : [];
+        $httpOpts    = is_array($doveadmOpts['http'] ?? null) ? $doveadmOpts['http'] : [];
+        $skip        = $httpOpts['skip'] ?? '';
+        if (is_scalar($skip) && (string) $skip === '1') {
             return new self('http://skip.local', 'skip', 1, $progress);
         }
         if (!array_key_exists('doveadm', $options)) {
