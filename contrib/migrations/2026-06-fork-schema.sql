@@ -433,3 +433,13 @@ SET @ddl := IF(@have_alias_version = 0,
     'ALTER TABLE `alias` ADD `alias_version` BIGINT NOT NULL DEFAULT 1',
     'DO 0 /* alias_version already present */');
 PREPARE _m FROM @ddl; EXECUTE _m; DEALLOCATE PREPARE _m;
+
+-- ---------------------------------------------------------------------
+-- 11) setting table (missing from standalone SQL mirror)
+-- ---------------------------------------------------------------------
+CREATE TABLE IF NOT EXISTS `setting` (
+    `name`       VARCHAR(64)  NOT NULL,
+    `value`      VARCHAR(255) NULL DEFAULT NULL,
+    `updated_at` DATETIME     NULL DEFAULT NULL,
+    PRIMARY KEY (`name`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
