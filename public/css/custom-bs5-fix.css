@@ -52,7 +52,7 @@ body > .container {
     white-space: normal;
     line-height: 1.25;
     text-align: right;
-    font-weight: 600;
+    font-weight: 400;
     margin-bottom: 0;
     flex-shrink: 0;
 }
@@ -117,6 +117,11 @@ form input:focus {
     border-radius: 0.375rem;
 }
 
+/* Nur auf der Login-Seite: Label-Spalte schmaler machen, damit die Inputs weiter nach links rücken */
+.vimb-login-form:not(.vimb-changepw-form) label {
+    width: 75px; /* Vorher 185px -> rückt Labels und Inputs um 90px nach links */
+}
+
 /* --- Change-Password-Seite: Cancel & Submit exakt unter den Input-Feldern ausrichten --- */
 /* Gesamtbreite Formularzeile = 185px Label + 14px Gap + 290px Input = 489px; Einrückung = 199px */
 .vimb-changepw-form {
@@ -125,7 +130,7 @@ form input:focus {
     justify-content: flex-start;
     align-items: flex-end;
     gap: 10px;
-    width: 489px;
+    width: 589px;
     max-width: 100%;
     margin: 0 auto;
     padding-left: 199px;
@@ -141,7 +146,7 @@ form input:focus {
 .vimb-changepw-form .mb-3,
 .vimb-changepw-form .form-group {
     margin-left: -199px;
-    width: 489px;
+    width: 589px;
 }
 
 .vimb-changepw-form .vimb-btn-cancel {
@@ -243,4 +248,14 @@ form input:focus {
     font-weight: 400;
     margin: 0 !important;
     cursor: pointer;
+}
+
+/* Schwarzer Balken bleibt 100 % breit, aber der Text darin wandert exakt mit dem unteren Container mit */
+.navbar > .container,
+body > .container {
+  max-width: 1200px; /* Gewünschte Breite hier anpassen (z. B. 960px, 860px oder 800px) */
+}
+
+.s-font {
+  font-size: 14px;
 }
