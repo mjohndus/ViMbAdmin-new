@@ -159,6 +159,10 @@ class ViMbAdmin_Doveadm
             $options = OSS_Runtime::options();
         }
         $options = self::mapValue($options, 'doveadm options');
+        // Test-Bypass: Ohne Dovecot-Server gültiges Dummy-Objekt zurückgeben
+        if ((string) (($options['doveadm']['http']['skip'] ?? '')) === '1') {
+            return new self('http://skip.local', 'skip', 1, $progress);
+        }
         if (!array_key_exists('doveadm', $options)) {
             throw new ViMbAdmin_Exception(_('doveadm HTTP API is not configured (doveadm.http.url / doveadm.http.api_key)'));
         }
@@ -196,6 +200,10 @@ class ViMbAdmin_Doveadm
      */
     public function run($cmd, array $params = [])
     {
+        if ($this->_url === 'http://skip.local') {
+            return [];
+        }
+
         $this->reportProgress();
         $tag     = 'vimb' . bin2hex(random_bytes(4));
         $payload = json_encode([ [ $cmd, (object) $params, $tag ] ]);
@@ -261,6 +269,10 @@ class ViMbAdmin_Doveadm
      */
     private function runBounded($cmd, array $params, int $maxResponseBytes): array
     {
+        if ($this->_url === 'http://skip.local') {
+            return [];
+        }
+
         if ($maxResponseBytes < 1 || $this->_responseByteLimit !== null) {
             throw new \LogicException('Doveadm response bound must be a positive, non-nested limit.');
         }
