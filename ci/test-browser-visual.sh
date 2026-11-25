@@ -2,7 +2,7 @@
 # Real application render, responsive, focus and skin checks; private state only.
 set -euo pipefail
 cd "$(dirname "$0")/.."
-MODE="fix" # "fix" = sofort korrigieren | "check" = falsche Hashes anzeigen & abbrechen
+MODE="check" # "fix" = sofort korrigieren | "check" = falsche Hashes anzeigen & abbrechen
 [[ "${1:-}" == "check" ]] && MODE="check" && shift
 export MODE VIMBADMIN_BROWSER_APPLICATION_SUITE=visual
 export VIMBADMIN_BROWSER_RUN_LABEL=${VIMBADMIN_BROWSER_RUN_LABEL:-c133-browser-visual}
