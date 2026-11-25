@@ -1,13 +1,22 @@
 # ViMbAdmin — modernised fork
 
-> **Fork Notice – Custom Modifications**
-> This fork contains three targeted additions for bare-metal deployments and streamlined UI/template customization:
+
+> ### Fork Notice — Custom Modifications
 >
-> 1. **Doveadm HTTP Bypass (`library/ViMbAdmin/Doveadm.php`)** – Supports `doveadm.http.skip = 1` in `application.ini` (default: `0`) to return a dummy client (`http://skip.local`) for testing or draining queued tasks without an active Dovecot endpoint.
-> 2. **Visual Inventory Auto-Hash (`ci/test-browser-visual.sh`)** – Adds a `fix` / `check` mode (`bash ci/test-browser-visual.sh check`) to automatically update SHA-256 hashes in `ci/browser-visual-inventory.json` after CSS or view changes.
-> 3. **List Template Auto-Hash (`ci/test-refactor-list-templates.php`)** – Adds a `fix` / `check` mode (`php ci/test-refactor-list-templates.php check`) to update `ORIGINAL_HASHES` when `alias/list.phtml` or `admin/domains.phtml` are modified.
-> 4. **Add missing setting table (`contrib/migrations/2026-06-fork-schema.sql`)**
-> 5. **doveadm.http.legacy_fs = 1 (`für Dovecot 2.3 fsDriver/fsArgs-Kompatibilität`)** – in `application.ini` (default: `0` for dovecot 2.4)
+> This fork extends upstream with targeted additions for bare-metal deployments, Dovecot 2.3/2.4 compatibility, and streamlined UI/template customization:
+>
+> **Runtime & Dovecot Compatibility (`application/configs/application.ini`)**
+> - **Dovecot 2.3 Filesystem Compatibility (`library/ViMbAdmin/Doveadm.php`)** – Supports `doveadm.http.legacy_fs = 1` (default: `0` for Dovecot 2.4) to translate Dovecot 2.4 `filterName` parameters into Dovecot 2.3 `fsDriver` / `fsArgs` syntax for `fs*` HTTP API calls.
+> - **Domain/User Maildir Hierarchy (`library/ViMbAdmin/Service/QueueRunner.php`)** – Supports `doveadm.maildir_domain_layout = 1` (default: `0` for flat `<root>/<user>`) so `QueueRunner` resolves mailbox paths as `<maildir_root>/<domain>/<local_part>` (e.g. `/home/vmail/://example.com`) during cleanup and backup verification.
+> - **Doveadm HTTP API Bypass (`library/ViMbAdmin/Doveadm.php`)** – Supports `doveadm.http.skip = 1` (default: `0`) to return a dummy client (`http://skip.local`) for testing or draining queued tasks without an active Dovecot HTTP endpoint.
+>
+> **Database Schema & Migrations**
+> - **Consolidated Migration Completeness (`contrib/migrations/2026-06-fork-schema.sql`)** – Adds `CREATE TABLE IF NOT EXISTS setting` to the standalone SQL migration mirror so upgrades from ViMbAdmin 3 include the `setting` table out of the box.
+>
+> **CI & Template Tooling**
+> - **Visual Inventory Auto-Hash (`ci/test-browser-visual.sh`)** – Adds a `fix` / `check` mode (`bash ci/test-browser-visual.sh check`) to automatically update SHA-256 hashes in `ci/browser-visual-inventory.json` after CSS or view changes.
+> - **List Template Auto-Hash (`ci/test-refactor-list-templates.php`)** – Adds a `fix` / `check` mode (`php ci/test-refactor-list-templates.php check`) to update `ORIGINAL_HASHES` when `application/views/alias/list.phtml` or `application/views/admin/domains.phtml` are modified.
+
 
 ---
 
