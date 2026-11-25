@@ -388,8 +388,8 @@ try {
             check(substr_count($source, PURGE_MODAL_HEADER) === 1, "{$template} has one admitted original fragment");
         }
         $actualHash = hash('sha256', $original);
-        $mode = in_array('check', $argv ?? [], true) ? 'check' : 'fix'; // fix auf github
-        //$mode = in_array('fix', $argv ?? [], true) ? 'fix' : 'check'; // check auf github
+        //$mode = in_array('check', $argv ?? [], true) ? 'check' : 'fix'; // fix auf github
+        $mode = in_array('fix', $argv ?? [], true) ? 'fix' : 'check'; // check auf github
         if ($mode === 'fix' && $actualHash !== $expectedHash) {
             file_put_contents(__FILE__, str_replace($expectedHash, $actualHash, file_get_contents(__FILE__)));
             $expectedHash = $actualHash;
