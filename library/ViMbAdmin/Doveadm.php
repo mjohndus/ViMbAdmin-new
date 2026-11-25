@@ -111,6 +111,9 @@ class ViMbAdmin_Doveadm
     /** @var int|null Maximum bytes accepted for the current response. */
     private ?int $_responseByteLimit = null;
 
+    /** @var bool Translate Dovecot 2.4 fs filterName to Dovecot 2.3 fsDriver/fsArgs. */
+    private bool $_legacyFs = false;
+
     /**
      * @param string $url     Full endpoint URL, e.g. http://dovecot:8081/doveadm/v1
      * @param string $apiKey  The doveadm_api_key (sent base64-encoded as X-Dovecot-API)
@@ -166,6 +169,17 @@ class ViMbAdmin_Doveadm
         if (is_scalar($skip) && (string) $skip === '1') {
             return new self('http://skip.local', 'skip', 1, $progress);
         }
+        $legacyFs = $httpOpts['legacy_fs'] ?? '';
+        $client   = new self(
+            $httpOpts['url'] ?? '',
+            $httpOpts['api_key'] ?? '',
+            $httpOpts['timeout'] ?? 900,
+            $progress
+        );
+        if (is_scalar($legacyFs) && (string) $legacyFs === '1') {
+            $client->_legacyFs = true;
+        }
+        return $client;
         if (!array_key_exists('doveadm', $options)) {
             throw new ViMbAdmin_Exception(_('doveadm HTTP API is not configured (doveadm.http.url / doveadm.http.api_key)'));
         }
@@ -206,7 +220,12 @@ class ViMbAdmin_Doveadm
         if ($this->_url === 'http://skip.local') {
             return [];
         }
-
+        if ($this->_legacyFs && array_key_exists('filterName', $params)) {
+            $filter = $params['filterName'];
+            unset($params['filterName']);
+            $params['fsDriver'] = is_string($filter) ? $filter : 'posix';
+            $params['fsArgs']   = '';
+        }
         $this->reportProgress();
         $tag     = 'vimb' . bin2hex(random_bytes(4));
         $payload = json_encode([ [ $cmd, (object) $params, $tag ] ]);
