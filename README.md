@@ -261,6 +261,7 @@ cp application/configs/application.ini.dist application/configs/application.ini
 
 # create the schema (modernised CLI; the old one used a dead API)
 ./bin/doctrine-cli.php orm:schema-tool:create
+./bin/vimbtool.php -a maintenance.cli-schema-update
 ```
 
 Point your web server's docroot at `public/`, wire PHP-FPM to it, browse to the
