@@ -162,6 +162,7 @@ class ViMbAdmin_Doveadm
             $options = OSS_Runtime::options();
         }
         $options = self::mapValue($options, 'doveadm options');
+
         // Test-Bypass: Ohne Dovecot-Server gültiges Dummy-Objekt zurückgeben
         $doveadmOpts = is_array($options['doveadm'] ?? null) ? $options['doveadm'] : [];
         $httpOpts    = is_array($doveadmOpts['http'] ?? null) ? $doveadmOpts['http'] : [];
@@ -169,17 +170,7 @@ class ViMbAdmin_Doveadm
         if (is_scalar($skip) && (string) $skip === '1') {
             return new self('http://skip.local', 'skip', 1, $progress);
         }
-        $legacyFs = $httpOpts['legacy_fs'] ?? '';
-        $client   = new self(
-            $httpOpts['url'] ?? '',
-            $httpOpts['api_key'] ?? '',
-            $httpOpts['timeout'] ?? 900,
-            $progress
-        );
-        if (is_scalar($legacyFs) && (string) $legacyFs === '1') {
-            $client->_legacyFs = true;
-        }
-        return $client;
+
         if (!array_key_exists('doveadm', $options)) {
             throw new ViMbAdmin_Exception(_('doveadm HTTP API is not configured (doveadm.http.url / doveadm.http.api_key)'));
         }
@@ -199,12 +190,18 @@ class ViMbAdmin_Doveadm
         $timeout = array_key_exists('timeout', $http) ? $http['timeout'] : 900;
         $timeout = self::positiveIntValue($timeout, 'doveadm.http.timeout');
 
-        return new self(
+        $client = new self(
             $url,
             $apiKey,
             $timeout,
             $progress
         );
+        $legacyFs = $http['legacy_fs'] ?? '';
+        if (is_scalar($legacyFs) && (string) $legacyFs === '1') {
+            $client->_legacyFs = true;
+        }
+
+        return $client;
     }
 
     /**
