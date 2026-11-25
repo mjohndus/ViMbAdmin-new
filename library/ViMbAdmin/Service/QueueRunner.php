@@ -96,6 +96,18 @@ class ViMbAdmin_Service_QueueRunner
         return $root;
     }
 
+    private function userMaildirHome(string $user): string
+    {
+        $safeUser = self::assertPathSafe($user);
+        $root     = $this->maildirRoot();
+        if ($this->optionString('', 'doveadm', 'maildir_domain_layout') === '1' && strpos($safeUser, '@') !== false) {
+            list($local, $domain) = explode('@', $safeUser, 2);
+            return $root . '/' . self::assertPathSafe($domain) . '/' . self::assertPathSafe($local);
+        }
+
+        return $root . '/' . $safeUser;
+    }
+
     /** @return array{queue:array{runner:array{max_concurrent:int}}} */
     private function leaseOptions(): array
     {
@@ -590,7 +602,8 @@ class ViMbAdmin_Service_QueueRunner
         string $dest
     ): void {
         if ($this->backupContainsMail($doveadm, $dest)) {
-            $home = $this->maildirRoot() . '/' . self::assertPathSafe($task->requiredUsername());
+            $home = $this->userMaildirHome($task->requiredUsername());
+            //$home = $this->maildirRoot() . '/' . self::assertPathSafe($task->requiredUsername());
             if (!$doveadm->maildirHasMail($home)) {
                 throw new ViMbAdmin_Exception(
                     "refusing to overwrite existing backup for {$user} from an empty mail store"
@@ -847,7 +860,8 @@ class ViMbAdmin_Service_QueueRunner
     private function removeMaildirHome(\Entities\MailboxTask $task, $doveadm, $user)
     {
         $root = $this->maildirRoot();
-        $home = $root . '/' . self::assertPathSafe($user);
+        $home = $this->userMaildirHome($user);
+        //$home = $root . '/' . self::assertPathSafe($user);
 
         try {
             $doveadm->fsListDirs($home);
