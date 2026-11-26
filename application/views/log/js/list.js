@@ -22,14 +22,15 @@ vmReady(function()
         'order': [[ {if !isset( $domain ) || !$domain}4{else}3{/if}, 'desc' ]],
         'language': { 'processing': 'Loading…', 'emptyTable': 'No log entries.', 'search': 'Search (prefix * to match anywhere):' },
         'drawCallback': vmDataTableRememberPageLength,
+        'autoWidth': false,
         'columns': [
-            { 'data': 'action',    'render': DataTable.render.text() },
+            { 'data': 'action',    'width': '125px', 'render': DataTable.render.text() },
             { 'data': 'data',      'orderable': false, 'render': DataTable.render.text() },
-            { 'data': 'admin',     'render': DataTable.render.text() },
+            { 'data': 'admin',     'width': '190px', 'render': DataTable.render.text() },
             {if !isset( $domain ) || !$domain}
-            { 'data': 'domain',    'render': DataTable.render.text() },
+            { 'data': 'domain',    'width': '155px', 'render': DataTable.render.text() },
             {/if}
-            { 'data': 'timestamp', 'render': DataTable.render.text() }
+            { 'data': 'timestamp', 'width': '175px', 'render': DataTable.render.text() }
         ]
     });
     {else}
